@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "230264329d1e182d587025c9625b3165",
+    "content-hash": "cb1130494f60e2328a811086e7a28a69",
     "packages": [
         {
             "name": "biscolab/laravel-recaptcha",
@@ -5693,16 +5693,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v10.4.4",
+            "version": "v10.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "cb617863af431070c7b6623931c3345a126173b7"
+                "reference": "cd684c1827c6540a911226e77779477cbb86fc25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/cb617863af431070c7b6623931c3345a126173b7",
-                "reference": "cb617863af431070c7b6623931c3345a126173b7",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/cd684c1827c6540a911226e77779477cbb86fc25",
+                "reference": "cd684c1827c6540a911226e77779477cbb86fc25",
                 "shasum": ""
             },
             "require": {
@@ -5765,7 +5765,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables/issues",
-                "source": "https://github.com/yajra/laravel-datatables/tree/v10.4.4"
+                "source": "https://github.com/yajra/laravel-datatables/tree/v10.6.1"
             },
             "funding": [
                 {
@@ -5773,7 +5773,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-27T11:55:36+00:00"
+            "time": "2023-07-05T01:30:07+00:00"
         }
     ],
     "packages-dev": [
