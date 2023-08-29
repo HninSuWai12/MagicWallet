@@ -76,6 +76,15 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('userPage.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>User Management</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
 
 
 

@@ -21,6 +21,14 @@ use App\Http\Controllers\Frontend\frontendController;
 
 Auth::routes();
 Route::get('/',[frontendController::class,'home']);
+Route::group(['prefix' => 'user/'], function () {
+Route::resource('userPage',frontendController::class);
+Route::get('ssd',[frontendController::class,'ssd']);
+
+Route::get('addUser',[frontendController::class,'addUser'])->name('user#addUser');
+Route::any('/data/{id}', [frontendController::class,'destory'])->name('userData.delete');
+});
+
 
 
 Route::get('contact-us', [ContactController::class, 'index']);

@@ -1,8 +1,8 @@
 @extends('Backend.Layout.backend')
 @section('content')
     <div class="mt-3 mb-3 ms-3">
-        <a href="{{ route('addUser') }}" class="btn bg-gradient-primary text-white"><i
-                class="fa-solid fa-circle-plus me-2"></i>Add Admin</a>
+        <a href="{{ route('user#addUser') }}" class="btn bg-gradient-primary text-white"><i
+                class="fa-solid fa-circle-plus me-2"></i>Add User</a>
     </div>
 
     <div class="container-fluid mt-3 mb-3">
@@ -35,7 +35,7 @@
             var table = $('#table_id').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url('admin/ssd') }}',
+                ajax: '{{ url('user/ssd') }}',
                 columns: [{
                         data: 'name',
                         name: 'name'

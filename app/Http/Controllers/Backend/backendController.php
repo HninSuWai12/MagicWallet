@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\AdminUser;
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use GrahamCampbell\ResultType\Success;
 
 class backendController extends Controller
 {
@@ -25,12 +26,27 @@ class backendController extends Controller
     public function ssd(){
         $data=AdminUser::query();
         return DataTables::of($data)
+        ->editColumn('user_agent', function($each){
+            $agent = new Agent();
+            $agent->setUserAgent($each->user_agent);
+            $device = $agent->device();
+            $platform = $agent->platform();
+            $browser = $agent->browser();
+            return `<table class="table table-bordered" >
+            <tbody>
+            <tr> <td> Device</td> <td> `. $device.` </td> </tr>
+            <tr> <td> Platform</td> <td> `. $platform.` </td> </tr>
+            <tr> <td> Browser</td> <td> `. $browser.` </td> </tr>
+
+            </tbody>
+            </table>`;
+        })
         ->addColumn('action',function($each){
             $btn='<a href=" ' . route('adminPage.edit', [$each->id]) . ' "><i class="fa-solid fa-user-pen text-info  dataBtn"></i></a>';
             $btn=$btn.'<a href=" '. route('data.delete' ,[$each->id] ).' " data-toggle="tooltip" onclick="hapusUsers('.$each->id.')"  " id="delete-event"  class="deleteProduct">
             <i class="fa-solid fa-trash text-danger dataBtn "  ></i></a>';
             return   $btn;
-        })->rawColumns(['action'])
+        })->rawColumns(['user_agent', 'action'])
         ->make(true);
     }
 
