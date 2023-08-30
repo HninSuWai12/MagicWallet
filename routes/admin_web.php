@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\backendController;
+use App\Http\Controllers\Backend\WalletController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,9 @@ use Illuminate\Support\Facades\Auth;
     Route::get('addUser',[backendController::class,'addUser'])->name('addUser');
     Route::any('/data/{id}', [backendController::class,'destory'])->name('data.delete');
 
+//Wallet
+Route::resource('wallet',WalletController::class);
+Route::get('ssdWallet',[WalletController::class,'ssd']);
 
  });
 

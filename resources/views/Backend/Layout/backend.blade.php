@@ -84,6 +84,14 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('wallet.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Wallet</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
 
 

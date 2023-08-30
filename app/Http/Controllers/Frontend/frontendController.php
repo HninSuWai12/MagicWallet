@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
+use App\Healper\UUIDGenerate;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Wallet;
 use Illuminate\Support\Facades\Hash;
 
 class frontendController extends Controller
@@ -71,7 +72,7 @@ class frontendController extends Controller
                 'user_id'=>$storeData->id,
             ],
             [
-                'account_number'=>'1234123412341234',
+                'account_number'=>UUIDGenerate::accountNumber(),
                 'amount'=>0,
             ]
          );
@@ -79,16 +80,34 @@ class frontendController extends Controller
          return redirect()->route('userPage.index');
          } catch(\Exception $e){
             DB::rollBack();
-            return back()->withErrors(['fails'=>'Something Wrong'])->withInput();
+            return redirect()->route('user#addUser')->with(['fails'=>'Something Wrong . '.$e->getMessage()]);
          }
          
      }
      //edit
      public function edit($id){
         // dd($id);
-         $data=User::where('id',$id)->first();
-         //dd($data->toArray());
+        
+         DB::beginTransaction();
+         try{
+            $data=User::where('id',$id)->first();
+         Wallet::firstOrCreate(
+            [
+                'user_id'=>$data->id,
+            ],
+            [
+                'account_number'=>UUIDGenerate::accountNumber(),
+                'amount'=>0,
+            ]
+         );
+         DB::commit();
          return view('Frontend.UserInfo.editUser',compact('data'));
+         } catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->route('userPage.edit')->with(['fails'=>'Something Wrong . '.$e->getMessage()]);
+         }
+         //dd($data->toArray());
+        
      }
  
      public function update(Request $request,$id){

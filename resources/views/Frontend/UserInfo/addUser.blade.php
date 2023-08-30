@@ -1,6 +1,10 @@
 @extends('Backend.Layout.backend')
 @section('content')
-
+<div>
+    @if(Session::has('fails'))
+    <p class="alert alert-danger">{{ Session::get('fails') }}</p>
+    @endif
+</div>
 <div class="container ms-3 mt-3">
   <form action="{{route('userPage.store')}}" method="POST">
     @csrf
